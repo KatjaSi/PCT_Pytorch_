@@ -3,6 +3,7 @@ import glob
 import h5py
 import numpy as np
 from torch.utils.data import Dataset
+import matplotlib.pyplot as plt
 
 def download():
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -77,8 +78,23 @@ class ModelNet40(Dataset):
 
 
 if __name__ == '__main__':
-    train = ModelNet40(1024)
-    test = ModelNet40(1024, 'test')
-    for data, label in train:
-        print(data.shape)
-        print(label.shape)
+    data, label = load_data("train")
+    x, y, z = data[10].T
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+
+    ax.scatter(x, y, z, c='b', marker='.')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
+
+    plt.show()
+    plt.savefig("output.png")
+    print(len(x))
+    #train = ModelNet40(1024)
+    #test = ModelNet40(1024, 'test')
+    #for data, label in train:
+     #   print(data)
+        #print(label.shape)
+        #print(label)
