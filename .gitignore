@@ -1,4 +1,5 @@
 gcc-9.4.0/*
-checkpoints/*
+*.backup
+*.log
 *.pyc
 *.png
